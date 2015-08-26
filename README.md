@@ -3,7 +3,7 @@
 ## Contribuitors
 
 * Ana Carolline
-* Denis
-* Ivan
-* Maily
-* Rafael
+* Denis Wilson 
+* Ivan Moura
+* Maily Oliveira
+* Rafael Turquetti
