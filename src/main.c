@@ -4,8 +4,45 @@
 #include "../3rdparty/mongoose.h"
 #include "../3rdparty/sqlite3.h"
 
-static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
-	return MG_FALSE;
+#define OUTPUT_BUFFER_SIZE 150000
+
+static int ev_handler(struct mg_connection *conn, 
+                      enum mg_event ev) {
+  char buffer[OUTPUT_BUFFER_SIZE];
+  char index[] = "web/index.html";
+  char ch;
+  int x;
+  FILE *arq;
+  buffer[0] = '\x0';
+
+  switch (ev) {
+    case MG_AUTH:
+		return MG_MORE;
+    case MG_REQUEST:
+		//REQUISIÇÕES DE PÁGINA
+		
+		mg_send_header(conn, "Content-Type", "text/html");
+		
+		arq = fopen(index, "r");
+		
+		if ( arq == NULL ) {
+			printf("[Erro]: nao foi possivel abrir o arquivo web/index.html\n");
+		} else {
+			for ( x = 0; (ch = fgetc(arq)) != EOF && x < OUTPUT_BUFFER_SIZE ; x++ ) {
+				buffer[x] = ch;
+			}
+
+			if(fclose(arq) == EOF){
+				printf("[Erro]: nao foi possivel fechar o arquivo web/index.html\n");
+			}
+		}	
+		
+		mg_printf_data(conn, buffer);
+		
+		return MG_TRUE;
+    default: 
+		return MG_FALSE;
+  }
 }
 
 int main(void){
