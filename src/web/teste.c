@@ -17,6 +17,7 @@ int page_teste(char buffer[], int size_buffer){
         for ( x = 0; (ch = fgetc(arq)) != EOF && x < size_buffer ; x++ ) {
             buffer[x] = ch;
         }
+        buffer[x] = '\0';
 
         if(fclose(arq) == EOF){
             printf("[Erro]: nao foi possivel fechar o arquivo web/teste.html\n");
