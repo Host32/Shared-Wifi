@@ -1,6 +1,6 @@
-#include "index.h"
+#include "teste.h"
 
-char* page_teste(char buffer[], int size_buffer){
+int page_teste(char buffer[], int size_buffer){
     char index[] = "web/teste.html";
     char ch;
     int x;
