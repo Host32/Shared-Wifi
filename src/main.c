@@ -3,46 +3,38 @@
 #include <string.h>
 #include "../3rdparty/mongoose.h"
 #include "../3rdparty/sqlite3.h"
+#include "web/index.h"
+#include "web/teste.h"
 
-#define OUTPUT_BUFFER_SIZE 150000
+#define OUTPUT_BUFFER_SIZE 200000
 
-static int ev_handler(struct mg_connection *conn, 
-                      enum mg_event ev) {
-  char buffer[OUTPUT_BUFFER_SIZE];
-  char index[] = "web/index.html";
-  char ch;
-  int x;
-  FILE *arq;
-  buffer[0] = '\x0';
+static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
+    char buffer[OUTPUT_BUFFER_SIZE];
+    buffer[0] = '\0';
 
-  switch (ev) {
-    case MG_AUTH:
-		return MG_MORE;
-    case MG_REQUEST:
-		//REQUISIÇÕES DE PÁGINA
-		
-		mg_send_header(conn, "Content-Type", "text/html");
-		
-		arq = fopen(index, "r");
-		
-		if ( arq == NULL ) {
-			printf("[Erro]: nao foi possivel abrir o arquivo web/index.html\n");
-		} else {
-			for ( x = 0; (ch = fgetc(arq)) != EOF && x < OUTPUT_BUFFER_SIZE ; x++ ) {
-				buffer[x] = ch;
-			}
+    switch (ev) {
+        case MG_AUTH:
+            return MG_MORE;
+        case MG_REQUEST:
 
-			if(fclose(arq) == EOF){
-				printf("[Erro]: nao foi possivel fechar o arquivo web/index.html\n");
-			}
-		}	
-		
-		mg_printf_data(conn, buffer);
-		
-		return MG_TRUE;
-    default: 
-		return MG_FALSE;
-  }
+            mg_send_header(conn, "Content-Type", "text/html");
+
+            if(strcmp(conn->uri, "/teste") == 0){ // Switch das urls
+                if(page_teste(buffer, sizeof(buffer)) == 0){
+                    return MG_FALSE;
+                }
+            } else {  // Entregar o index caso nao encontre a url
+                if(page_index(buffer, sizeof(buffer)) == 0){
+                    return MG_FALSE;
+                }
+            }
+
+            mg_printf_data(conn, buffer);
+
+            return MG_TRUE;
+        default:
+            return MG_FALSE;
+    }
 }
 
 int main(void){
