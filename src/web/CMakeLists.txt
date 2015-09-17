@@ -1,8 +1,5 @@
 add_library(html_reader html_reader.c)
 
-add_library(page_index index.c)
-target_link_libraries(page_index html_reader)
+add_subdirectory(pages)
 
-add_library(page_teste teste.c)
-target_link_libraries(page_teste html_reader)
-
+#add_subdirectory(template)

@@ -3,8 +3,8 @@
 #include <string.h>
 #include "../3rdparty/mongoose.h"
 #include "../3rdparty/sqlite3.h"
-#include "web/index.h"
-#include "web/teste.h"
+#include "web/pages/index.h"
+#include "web/pages/teste.h"
 
 #define OUTPUT_BUFFER_SIZE 200000
 

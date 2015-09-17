@@ -19,5 +19,5 @@ target_link_libraries(SharedWifi page_teste)
 # Web resources
 add_custom_command(TARGET SharedWifi POST_BUILD
                    COMMAND ${CMAKE_COMMAND} -E copy_directory
-                       ${CMAKE_SOURCE_DIR}/src/web $<TARGET_FILE_DIR:SharedWifi>/web)
+                       ${CMAKE_SOURCE_DIR}/src/web/html $<TARGET_FILE_DIR:SharedWifi>/web/html)
 
