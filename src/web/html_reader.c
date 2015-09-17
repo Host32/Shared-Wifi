@@ -24,5 +24,6 @@ int html_reader(char file_name[], char buffer[], int size_buffer, int initial_ch
         }
     }
 
+    // Retorna o indice do fim da string
     return x;
 }

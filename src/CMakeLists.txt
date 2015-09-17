@@ -12,6 +12,10 @@ target_link_libraries(SharedWifi sqlite3)
 
 target_link_libraries (SharedWifi ${CMAKE_THREAD_LIBS_INIT})
 
+# Template
+target_link_libraries(SharedWifi template_header)
+target_link_libraries(SharedWifi template_footer)
+
 # Web pages
 target_link_libraries(SharedWifi page_index)
 target_link_libraries(SharedWifi page_teste)

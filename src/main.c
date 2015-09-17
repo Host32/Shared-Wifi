@@ -3,6 +3,8 @@
 #include <string.h>
 #include "../3rdparty/mongoose.h"
 #include "../3rdparty/sqlite3.h"
+#include "web/template/header.h"
+#include "web/template/footer.h"
 #include "web/pages/index.h"
 #include "web/pages/teste.h"
 
@@ -10,25 +12,41 @@
 
 static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
     char buffer[OUTPUT_BUFFER_SIZE];
+    int eo_header, eo_body;
+
     buffer[0] = '\0';
 
     switch (ev) {
         case MG_AUTH:
             return MG_MORE;
         case MG_REQUEST:
-
             mg_send_header(conn, "Content-Type", "text/html");
 
-            if(strcmp(conn->uri, "/teste") == 0){ // Switch das urls
-                if(page_teste(buffer, sizeof(buffer), 0) == 0){
+            // Cabecalho do template
+            if((eo_header = template_header(buffer, sizeof(buffer), 0)) == 0){
+                return MG_FALSE;
+            }
+
+            // Switch das urls
+            // pagina de teste
+            if(strcmp(conn->uri, "/teste") == 0){
+                if((eo_body = page_teste(buffer, sizeof(buffer), eo_header)) == 0){
                     return MG_FALSE;
                 }
-            } else {  // Entregar o index caso nao encontre a url
-                if(page_index(buffer, sizeof(buffer), 0) == 0){
+            }
+            // Index default
+            else {
+                if((eo_body = page_index(buffer, sizeof(buffer), eo_header)) == 0){
                     return MG_FALSE;
                 }
             }
 
+            // Rodape da pagina
+            if(template_footer(buffer, sizeof(buffer), eo_body) == 0){
+                return MG_FALSE;
+            }
+
+            // Imprime a resposta
             mg_printf_data(conn, buffer);
 
             return MG_TRUE;
