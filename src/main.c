@@ -20,11 +20,11 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
             mg_send_header(conn, "Content-Type", "text/html");
 
             if(strcmp(conn->uri, "/teste") == 0){ // Switch das urls
-                if(page_teste(buffer, sizeof(buffer)) == 0){
+                if(page_teste(buffer, sizeof(buffer), 0) == 0){
                     return MG_FALSE;
                 }
             } else {  // Entregar o index caso nao encontre a url
-                if(page_index(buffer, sizeof(buffer)) == 0){
+                if(page_index(buffer, sizeof(buffer), 0) == 0){
                     return MG_FALSE;
                 }
             }
