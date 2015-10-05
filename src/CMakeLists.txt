@@ -1,8 +1,10 @@
 find_package(Threads)
 
-add_definitions(-Wall -g -pedantic -ggdb -lpthread -lcppdb_sqlite3)
+add_definitions(-Wall -g -pedantic -ggdb -std=c99 -lpthread -lcppdb_sqlite3)
 
 add_subdirectory(web)
+
+add_subdirectory(db)
 
 add_executable(SharedWifi main.c)
 
