@@ -21,6 +21,6 @@ void add_route(const char *prefix, int(*fn) (struct mg_connection *conn));
 void init_routes_table();
 
 /* Entrega a rota para o prefix pesquisado */
-static int exec_route(char *prefix, struct mg_connection *conn);
+int exec_route(const char *prefix, struct mg_connection *conn);
 
 #endif

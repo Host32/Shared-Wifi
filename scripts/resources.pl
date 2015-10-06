@@ -3,7 +3,7 @@
 use File::Find;
 use strict;
 
-my @ directory_list = ('web/');
+my @ directory_list = ('../src/web/');
 my $files_processed = 0;
 
 my $cprogramheader = <<END
@@ -47,7 +47,7 @@ sub process_file {
        if($type eq "css" || 
           $type eq "js" || 
           $type eq "html") {
-          $filename_web =~ s/.\/resources//;
+          $filename_web =~ s/..\/src\/web//;
           my $function_name = $filename_web;
           $function_name =~ s/[\/\.\-]/\_/g;
           $addroutes .= "   add_route(\"$filename_web\",$function_name);\n";  
@@ -76,7 +76,7 @@ END
 find(\&process_file, @directory_list);
 print "\nfiles processed : $files_processed\n";
 
-open(OUT, ">resources.c");
+open(OUT, ">../src/resources.c");
 print OUT $cprogramheader;
 print OUT $functions;
 print OUT "\nvoid init_resources_table() {\n";

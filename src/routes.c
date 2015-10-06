@@ -12,7 +12,7 @@ void add_route(const char *path, int(*fn) (struct mg_connection *conn)) {
 }
 
 /* Inicia a tabela de rotas limpando seus valores */
-static void init_routes_table() {
+void init_routes_table() {
 	int i;
 	for (i = 0; i < MAX_ENTRY_ROUTE_TABLE; i++) {
 		strcpy(route_array[i].prefix, "");
@@ -20,7 +20,7 @@ static void init_routes_table() {
 	}
 }
 
-static int exec_route(const char *prefix, struct mg_connection *conn) {
+int exec_route(const char *prefix, struct mg_connection *conn) {
 	int i, rc;
 	route aux;
 

@@ -18,3 +18,5 @@ target_link_libraries(SharedWifi routes)
 
 target_link_libraries(SharedWifi resources)
 
+set(CMAKE_C_FLAGS "-std=c99")
+
