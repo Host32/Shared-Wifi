@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shared Wifi</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+	<div id="conteudo">
+		<p>Shared Wifi</p>
+		<br/>
+		<p>Para ter acesso a internet, faça login com uma conta do facebook.</p>
+		</br>
+
+		<fb:login-button data-size="medium" data-show-faces="true" data-auto-logout-link="true" scope="public_profile, email" onlogin="checkLoginState();">
+		</fb:login-button>
+
+		<div id="status">
+		</div>
+	</div>
+
+	<!-- jQuery -->
+	<script src="vendor/jquery/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JavaScript -->
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+	
+    <!-- Custom JavaScript -->
+    <link rel="stylesheet" href="js/app.js">
+</body>
+</html>
