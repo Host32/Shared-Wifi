@@ -1,6 +1,6 @@
 #include "resources.h"
 
-int ___src_web_index_html(struct mg_connection *conn)
+int web_index_html(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/html");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -50,7 +50,7 @@ int ___src_web_index_html(struct mg_connection *conn)
     return MG_TRUE;
 }
 
-int ___src_web_vendor_jquery_jquery_min_js(struct mg_connection *conn)
+int web_vendor_jquery_jquery_min_js(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/js");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -62,7 +62,7 @@ int ___src_web_vendor_jquery_jquery_min_js(struct mg_connection *conn)
     return MG_TRUE;
 }
 
-int ___src_web_vendor_bootstrap_plugins_bootbox_js(struct mg_connection *conn)
+int web_vendor_bootstrap_plugins_bootbox_js(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/js");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -1039,7 +1039,7 @@ int ___src_web_vendor_bootstrap_plugins_bootbox_js(struct mg_connection *conn)
     return MG_TRUE;
 }
 
-int ___src_web_vendor_bootstrap_js_bootstrap_js(struct mg_connection *conn)
+int web_vendor_bootstrap_js_bootstrap_js(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/js");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -3364,7 +3364,7 @@ int ___src_web_vendor_bootstrap_js_bootstrap_js(struct mg_connection *conn)
     return MG_TRUE;
 }
 
-int ___src_web_vendor_bootstrap_js_bootstrap_min_js(struct mg_connection *conn)
+int web_vendor_bootstrap_js_bootstrap_min_js(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/js");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -3379,7 +3379,7 @@ int ___src_web_vendor_bootstrap_js_bootstrap_min_js(struct mg_connection *conn)
     return MG_TRUE;
 }
 
-int ___src_web_vendor_bootstrap_js_npm_js(struct mg_connection *conn)
+int web_vendor_bootstrap_js_npm_js(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/js");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -3400,7 +3400,7 @@ int ___src_web_vendor_bootstrap_js_npm_js(struct mg_connection *conn)
     return MG_TRUE;
 }
 
-int ___src_web_vendor_bootstrap_css_bootstrap_css(struct mg_connection *conn)
+int web_vendor_bootstrap_css_bootstrap_css(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/css");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -9992,7 +9992,7 @@ int ___src_web_vendor_bootstrap_css_bootstrap_css(struct mg_connection *conn)
     return MG_TRUE;
 }
 
-int ___src_web_vendor_bootstrap_css_bootstrap_theme_css(struct mg_connection *conn)
+int web_vendor_bootstrap_css_bootstrap_theme_css(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/css");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -10476,7 +10476,7 @@ int ___src_web_vendor_bootstrap_css_bootstrap_theme_css(struct mg_connection *co
     return MG_TRUE;
 }
 
-int ___src_web_vendor_bootstrap_css_bootstrap_theme_min_css(struct mg_connection *conn)
+int web_vendor_bootstrap_css_bootstrap_theme_min_css(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/css");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -10489,7 +10489,7 @@ int ___src_web_vendor_bootstrap_css_bootstrap_theme_min_css(struct mg_connection
     return MG_TRUE;
 }
 
-int ___src_web_vendor_bootstrap_css_bootstrap_min_css(struct mg_connection *conn)
+int web_vendor_bootstrap_css_bootstrap_min_css(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/css");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -10502,7 +10502,7 @@ int ___src_web_vendor_bootstrap_css_bootstrap_min_css(struct mg_connection *conn
     return MG_TRUE;
 }
 
-int ___src_web_js_app_js(struct mg_connection *conn)
+int web_js_app_js(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/js");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -10580,7 +10580,7 @@ int ___src_web_js_app_js(struct mg_connection *conn)
     return MG_TRUE;
 }
 
-int ___src_web_css_app_css(struct mg_connection *conn)
+int web_css_app_css(struct mg_connection *conn)
 {
     mg_send_header(conn, "Content-Type", "text/css");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
@@ -10590,17 +10590,17 @@ int ___src_web_css_app_css(struct mg_connection *conn)
 
 
 void init_resources_table() {
-   add_route("../src/web/index.html",___src_web_index_html);
-   add_route("../src/web/vendor/jquery/jquery.min.js",___src_web_vendor_jquery_jquery_min_js);
-   add_route("../src/web/vendor/bootstrap/plugins/bootbox.js",___src_web_vendor_bootstrap_plugins_bootbox_js);
-   add_route("../src/web/vendor/bootstrap/js/bootstrap.js",___src_web_vendor_bootstrap_js_bootstrap_js);
-   add_route("../src/web/vendor/bootstrap/js/bootstrap.min.js",___src_web_vendor_bootstrap_js_bootstrap_min_js);
-   add_route("../src/web/vendor/bootstrap/js/npm.js",___src_web_vendor_bootstrap_js_npm_js);
-   add_route("../src/web/vendor/bootstrap/css/bootstrap.css",___src_web_vendor_bootstrap_css_bootstrap_css);
-   add_route("../src/web/vendor/bootstrap/css/bootstrap-theme.css",___src_web_vendor_bootstrap_css_bootstrap_theme_css);
-   add_route("../src/web/vendor/bootstrap/css/bootstrap-theme.min.css",___src_web_vendor_bootstrap_css_bootstrap_theme_min_css);
-   add_route("../src/web/vendor/bootstrap/css/bootstrap.min.css",___src_web_vendor_bootstrap_css_bootstrap_min_css);
-   add_route("../src/web/js/app.js",___src_web_js_app_js);
-   add_route("../src/web/css/app.css",___src_web_css_app_css);
+   add_route("web/index.html",web_index_html);
+   add_route("web/vendor/jquery/jquery.min.js",web_vendor_jquery_jquery_min_js);
+   add_route("web/vendor/bootstrap/plugins/bootbox.js",web_vendor_bootstrap_plugins_bootbox_js);
+   add_route("web/vendor/bootstrap/js/bootstrap.js",web_vendor_bootstrap_js_bootstrap_js);
+   add_route("web/vendor/bootstrap/js/bootstrap.min.js",web_vendor_bootstrap_js_bootstrap_min_js);
+   add_route("web/vendor/bootstrap/js/npm.js",web_vendor_bootstrap_js_npm_js);
+   add_route("web/vendor/bootstrap/css/bootstrap.css",web_vendor_bootstrap_css_bootstrap_css);
+   add_route("web/vendor/bootstrap/css/bootstrap-theme.css",web_vendor_bootstrap_css_bootstrap_theme_css);
+   add_route("web/vendor/bootstrap/css/bootstrap-theme.min.css",web_vendor_bootstrap_css_bootstrap_theme_min_css);
+   add_route("web/vendor/bootstrap/css/bootstrap.min.css",web_vendor_bootstrap_css_bootstrap_min_css);
+   add_route("web/js/app.js",web_js_app_js);
+   add_route("web/css/app.css",web_css_app_css);
 }
 
