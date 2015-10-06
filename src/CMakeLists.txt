@@ -6,6 +6,8 @@ add_executable(SharedWifi main.c)
 
 add_library(routes routes.c)
 
+add_library(resources resources.c)
+
 target_link_libraries(SharedWifi mongoose)
 
 target_link_libraries(SharedWifi sqlite3)
@@ -13,4 +15,6 @@ target_link_libraries(SharedWifi sqlite3)
 target_link_libraries (SharedWifi ${CMAKE_THREAD_LIBS_INIT})
 
 target_link_libraries(SharedWifi routes)
+
+target_link_libraries(SharedWifi resources)
 

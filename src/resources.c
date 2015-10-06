@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include "../3rdparty/mongoose.h"
-#include "routes.h"
+#include "resources.h"
 
 int ___src_web_index_html(struct mg_connection *conn)
 {

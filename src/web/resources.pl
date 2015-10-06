@@ -7,10 +7,7 @@ my @ directory_list = ('../src/web/');
 my $files_processed = 0;
 
 my $cprogramheader = <<END
-#include <stdio.h>
-#include <stdlib.h>
-#include "../3rdparty/mongoose.h"
-#include "routes.h"
+#include "resources.h"
 
 END
 ;
@@ -79,7 +76,7 @@ END
 find(\&process_file, @directory_list);
 print "\nfiles processed : $files_processed\n";
 
-open(OUT, ">resources.c");
+open(OUT, ">../resources.c");
 print OUT $cprogramheader;
 print OUT $functions;
 print OUT "\nvoid init_resources_table() {\n";

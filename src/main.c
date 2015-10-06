@@ -4,6 +4,7 @@
 #include "../3rdparty/mongoose.h"
 #include "../3rdparty/sqlite3.h"
 #include "routes.h"
+#include "resources.h"
 
 static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
 	int exec_result;
@@ -38,6 +39,7 @@ int main(void){
 	mg_set_option(server, "listening_port", "8080");
 
 	init_routes_table();
+	init_resources_table();
 
 	// Serve request. Hit Ctrl-C to terminate the program
 	printf("Starting on port %s\n", mg_get_option(server, "listening_port"));
