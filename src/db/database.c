@@ -17,17 +17,17 @@ char *sql_query_client;
 char *sql_query;
 
 
-int connectDb(){
+int connect_db(){
     return msg = sqlite3_open("banco.db", &conn);
 }
 
-int createTable() {
+int create_table() {
     sql_create = "CREATE TABLE IF NOT EXISTS cliente (id INTEGER PRIMARY KEY ASC NOT NULL, user_id INTEGER, birthday VARCHAR[12],link VARCHAR[100], name VARCHAR(100), locale VARCHAR[100], gender VARCHAR[10], email VARCHAR[80]);";
-	int r = connectDb();
+    int r = connect_db();
 	if (r != SQLITE_OK) {
         
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
-		closeDb();
+        close_db();
 		
         return 0;
 
@@ -38,25 +38,25 @@ int createTable() {
 		if (msg != SQLITE_OK ) {
 		
             fprintf(stderr, "SQL error: %s\n", errMsg);
-            closeDb();
+            close_db();
 		
             return 0;
         } else {
                   fprintf(stdout, "Operation done successfully\n");
         }
 		
-		closeDb();
+        close_db();
         return 1;
     }
 }
 
-int insertRow(cliente c) {
+int insert_row(cliente c) {
     sql_insert = "INSERT INTO cliente VALUES(?, ?, ?, ?, ?, ?, ?, ?);";
-    int r = connectDb();
+    int r = connect_db();
     if (r != SQLITE_OK) {
 
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
-        closeDb();
+        close_db();
 
         return 0;
 
@@ -66,7 +66,7 @@ int insertRow(cliente c) {
         if (msg != SQLITE_OK ) {
 
             fprintf(stderr, "SQL error: %s\n", errMsg);
-            closeDb();
+            close_db();
 
             return 0;
         } else {
@@ -80,19 +80,19 @@ int insertRow(cliente c) {
                   sqlite3_bind_text(stmt, 8, c.email, strlen(c.email), 0);
         }
 
-        closeDb();
+        close_db();
         return 1;
     }
 }
 
-int updateRow(cliente c) {
+int update_row(cliente c) {
     sql_update = "UPDATE cliente SET birthday = ?, link = ?, name = ?, locale = ?, gender = ?, email = ? WHERE user_id = ?;";
 
-    int r = connectDb();
+    int r = connect_db();
     if (r != SQLITE_OK) {
 
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
-        closeDb();
+        close_db();
 
         return 0;
 
@@ -101,7 +101,7 @@ int updateRow(cliente c) {
         msg = sqlite3_exec(conn, sql_update, callback, 0, &errMsg);
         if (msg != SQLITE_OK ) {
             fprintf(stderr, "SQL error: %s\n", errMsg);
-            closeDb();
+            close_db();
 
             return 0;
         } else {
@@ -114,44 +114,44 @@ int updateRow(cliente c) {
                     sqlite3_bind_int(stmt, 7, c.user_id);
         }
 
-        closeDb();
+        close_db();
         return 1;
     }
 }
 
-int deleteRow(int user_id) {
+int delete_row(int user_id) {
     sql_delete = "DELETE FROM cliente WHERE user_id = ?;";
-    int r = connectDb();
+    int r = connect_db();
     if (r != SQLITE_OK) {
 
             fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
-            closeDb();
+            close_db();
 
             return 0;
 
-    } else if(userExists(user_id)){
+    } else if(user_exists(user_id)){
                         msg = sqlite3_prepare_v2(conn, sql_delete, -1, &stmt, 0);
                         if (msg != SQLITE_OK ) {
                             fprintf(stderr, "SQL error: %s\n", errMsg);
-                            closeDb();
+                            close_db();
 
                             return 0;
                         } else {
                             sqlite3_bind_int(stmt, 1, user_id);
                             return 1;
                         }
-                        closeDb();
+                        close_db();
     }
     return 1;
 }
 
-int userExists(int user_id) {
+int user_exists(int user_id) {
     sql_query_client = "SELECT * FROM cliente WHERE user_id = ?;";
-	int r = connectDb();
+    int r = connect_db();
 	if (r != SQLITE_OK) {
         
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
-		closeDb();
+        close_db();
 		
         return 0;
 
@@ -165,18 +165,18 @@ int userExists(int user_id) {
                 return 1;
 			}
 		
-			closeDb();
+            close_db();
             return 0;
 		}
 }
 
-int listAllRows() {
+int list_all_rows() {
     sql_query = "SELECT * FROM cliente;";
-	int r = connectDb();
+    int r = connect_db();
 	if (r != SQLITE_OK) {
         
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
-		closeDb();
+        close_db();
 		
         return 0;
 
@@ -188,17 +188,17 @@ int listAllRows() {
             fprintf(stderr, "Failed to select data\n");
             fprintf(stderr, "SQL error: %s\n", errMsg);
 		
-            closeDb();
+            close_db();
 		
             return 0;
         }
 		
-		closeDb();
+        close_db();
         return 1;
 	}
 }
 
-void closeDb() {
+void close_db() {
     sqlite3_free(errMsg);
 	sqlite3_close(conn);
 }

@@ -19,14 +19,14 @@ typedef struct{
 	char email[80]; 
 } cliente;
 
-int connectDb();
-int createTable();
-int insertRow(cliente c);
-int updateRow(cliente c);
-int deleteRow(int user_id);
-int userExists(int user_id);
-int listAllRows();
-void closeDb();
+int connect_db();
+int create_table();
+int insert_row(cliente c);
+int update_row(cliente c);
+int delete_row(int user_id);
+int user_exists(int user_id);
+int list_all_rows();
+void close_db();
 static int callback(void *NotUsed, int argc, char **argv, char **azColName);
 
 #endif
