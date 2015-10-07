@@ -50,5 +50,5 @@ int main(void){
 	// Cleanup, and free server instance
 	mg_destroy_server(&server);
 
-	return 0;
+    return 0;
 }
