@@ -94,7 +94,7 @@
                     <h2>Menu</h2>
                     <hr class="small">
                     <div class="row">
-                        <div class="col-md-4 col-sm-8">
+                        <div class="col-md-3 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -106,7 +106,7 @@
                                 <p>Torresmo com Fritas........13,50<br>Torresmo com mandioca.....14,00<br>Costelinha com Fritas......15.00<br>Costelinha com Mandioca.......16,00<br>Pasteu de Angu(5)..........10,00</p>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-2 col-sm-8">
+                        <div class="col-md-3 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -118,7 +118,7 @@
                                 <p>Salaminho.....2,00<br>Azeitona.....3,00<br>Provolone....7,00<br>Parmesão.....9,00<br></p>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-2 col-sm-8">
+                        <div class="col-md-3 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -130,11 +130,12 @@
                                 <p>Brahma.......5,00<br>Skol.........6,00<br>Bohemia........9,00<br>Antartica........4,00<br>Devassa...........5,00</p>
                             </div>
                         </div>
-                        <div class="col-md-4 col-sm-2 col-sm-8">
+                        <div class="col-md-3 col-sm-6">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
                                 <i class="fa fa-beer fa-stack-1x text-primary"></i>
+
                             </span>
                                 <h4>
                                     <strong>Doses</strong>
@@ -160,42 +161,42 @@
                     <h2>Colaboradores</h2>
                     <hr class="small">
                     <div class="row">
-                        <div class="col-xs-6 col-md-2">
+                        <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="http://www.brahma.com.br/anonovo/">
                                     <img class="img-portfolio img-responsive" src="img/portfolio-1.jpg">
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-md-2">
+                        <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="http://www.cocacola.com.br/">
                                     <img class="img-portfolio img-responsive" src="img/portfolio-2.jpg">
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-md-2">
+                        <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="http://www.guaranaantarctica.com.br/">
                                     <img class="img-portfolio img-responsive" src="img/portfolio-3.jpg">
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-md-2">
+                        <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="http://www.bohemia.com.br/age">
                                     <img class="img-portfolio img-responsive" src="img/portfolio-4.jpg">
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-md-2">
+                        <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="http://www.cervejariadevassa.com.br/proibido/">
                                     <img class="img-portfolio img-responsive" src="img/portfolio-5.jpg">
                                 </a>
                             </div>
                         </div>
-                        <div class="col-xs-6 col-md-2">
+                        <div class="col-md-6">
                             <div class="portfolio-item">
                                 <a href="http://www.skol.com.br/pre-home/">
                                     <img class="img-portfolio img-responsive" src="img/portfolio-6.jpg">
