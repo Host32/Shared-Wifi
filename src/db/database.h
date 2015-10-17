@@ -10,11 +10,11 @@
 
 typedef struct{
 	int id;
-	int user_id;
+    char user_id[30];
     char birthday[12];
 	char link[100];
 	char name[100];
-	char locale[100];
+    char location[100];
     char gender[10];
 	char email[80]; 
 } cliente;
@@ -24,7 +24,7 @@ int create_table();
 int insert_row(cliente c);
 int update_row(cliente c);
 int delete_row(int user_id);
-int user_exists(int user_id);
+int user_exists(char user_id[]);
 int list_all_rows();
 void close_db();
 static int callback(void *NotUsed, int argc, char **argv, char **azColName);
