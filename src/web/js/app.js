@@ -15,23 +15,16 @@
         		        status: true,
         		        version: 'v2.5'
         		    });
-
-        		    FB.getLoginStatus(function (response) {
-        		        statusChangeCallback(response);
-        		    });
         		};
 
         		function fb_login() {
         		    FB.login(function (response) {
 
         		        if (response.authResponse) {
-        		            console.log(checkLike());
         		            userCheckin();
         		            //console.log(response); // dump complete info
         		            access_token = response.authResponse.accessToken; //get access token
         		            user_id = response.authResponse.userID; //get FB UID
-
-        		            console.log(captureUserInfo());
 
         		        } else {
         		            //user hit cancel button
