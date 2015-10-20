@@ -21,10 +21,11 @@
         		    FB.login(function (response) {
 
         		        if (response.authResponse) {
-        		            userCheckin();
-        		            //console.log(response); // dump complete info
-        		            access_token = response.authResponse.accessToken; //get access token
-        		            user_id = response.authResponse.userID; //get FB UID
+
+        		            checkLike();
+
+        		            //access_token = response.authResponse.accessToken; //get access token
+        		            //user_id = response.authResponse.userID; //get FB UID
 
         		        } else {
         		            //user hit cancel button
@@ -59,9 +60,9 @@
         		function checkLike() {
         		    FB.api("me/likes/549489188538791", function (response) {
         		        if (response.data.length === 1) {
-        		            return 0;
+        		            userCheckin();
         		        } else {
-        		            return 1;
+        		            $("#myModal").modal();
         		        }
         		    });
 
@@ -75,13 +76,11 @@
         		            "place": "549489188538791"
         		        },
         		        function (response) {
-        		            if (response.data.length === 1) {
-        		                console.log('Fez check-in.');
-                                return 0;
-        		            } else {
-        		                console.log('Não fez check-in.');
-                                return 1;
-        		            }
+                            if (!response || response.error) {
+                                console.log('Erro. Não liberar internet!');
+                            } else {
+                                console.log('Liberar internet!');
+                            }
         		        }
         		    );
         		}
