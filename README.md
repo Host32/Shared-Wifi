@@ -10,6 +10,10 @@
 * [Maily Oliveira](https://github.com/mailyosantos)
 * [Rafael Turquetti] (https://github.com/rturquetti)
 
+## Wiki
+Para acessar [clique aqui](https://github.com/Host32/Shared-Wifi/wiki)
+
+
 ## Installation guide
 
 ### 1. Run scripts
