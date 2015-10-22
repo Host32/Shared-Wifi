@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Stylish Portfolio - Start Bootstrap Theme</title>
+    <title>Bar do Zé</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -38,22 +38,22 @@
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand">
-                <a href="#top"  onclick = $("#menu-close").click(); >Bar do Zé</a>
+                <a href="#top" onclick=$ ( "#menu-close").click();>Bar do Zé</a>
             </li>
             <li>
-                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
+                <a href="#top" onclick=$ ( "#menu-close").click();>Home</a>
             </li>
             <li>
-                <a href="#wifi" onclick = $("#menu-close").click(); >Wifi</a>
+                <a href="#wifi" onclick=$ ( "#menu-close").click();>Wifi</a>
             </li>
             <li>
-                <a href="#services" onclick = $("#menu-close").click(); >Menu</a>
+                <a href="#services" onclick=$ ( "#menu-close").click();>Cardápio</a>
             </li>
             <li>
-                <a href="#portfolio" onclick = $("#menu-close").click(); >Colaboradores</a>
+                <a href="#portfolio" onclick=$ ( "#menu-close").click();>Colaboradores</a>
             </li>
             <li>
-                <a href="#contact" onclick = $("#menu-close").click(); >Contato</a>
+                <a href="#contact" onclick=$ ( "#menu-close").click();>Contato</a>
             </li>
         </ul>
     </nav>
@@ -72,18 +72,48 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <img class="img-portfolio img-responsive" src="img/free.png">
-                    <h2>Oferecemos no conforto de seu lazer, internet totalmente gratuita</h2>
-                    <h2>Apenas pedimos sua singela contribuição</h2>
-		    <h2>Para ter nosso serviço a sua disposição, por favor</h2></br>
-                    <a href="https://www.facebook.com/Bar-do-Z%C3%A9-549489188538791/timeline/?ref=hl"><img class="img-portfolio img-responsive" id="curtir" src="img/curtir.png"/></a><br><br>
-                    <p class="lead"><strong>E sinta-se em casa</strong></p>
+                    <span class="fa-stack fa-5x">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-wifi fa-stack-1x text-primary"></i>
+                    </span>
+                    <h1>
+                        <strong>Wifi Grátis</strong>
+                    </h1>
+                    <h3><p>1 - Faça check-in no "Bar do Zé" com uma conta do Facebook</br>
+                        2 - Ganhe acesso gratuito à internet</br></h3>
+                    </br>
+                    <button type="button" class="btn btn-primary btn-lg" onclick="fb_login()">Check-in</button>
+                    </p>
 
                 </div>
             </div>
             <!-- /.row -->
         </div>
         <!-- /.container -->
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Você ainda não curte nossa página!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Por favor, clique no botão para curtir antes de fazer o check-in.</br>
+                            <div class="fb-like" data-href="https://www.facebook.com/549489188538791" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+<!-- / Modal -->
     </section>
 
     <!-- Services -->
@@ -92,7 +122,7 @@
         <div class="container">
             <div class="row text-center">
                 <div class="col-lg-10 col-lg-offset-1">
-                    <h2>Menu</h2>
+                    <h2>Cardápio</h2>
                     <hr class="small">
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-sm-8">
@@ -104,10 +134,14 @@
                                 <h4>
                                     <strong>Porções</strong>
                                 </h4>
-                                <p>Torresmo com Fritas........13,50<br>Torresmo com mandioca.....14,00<br>Costelinha com Fritas......15.00<br>Costelinha com Mandioca.......16,00<br>Pasteu de Angu(5)..........10,00</p>
+                                <p>Torresmo com Fritas........13,50
+                                    <br>Torresmo com mandioca.....14,00
+                                    <br>Costelinha com Fritas......15.00
+                                    <br>Costelinha com Mandioca.......16,00
+                                    <br>Pastel de Angu(5)..........10,00</p>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-sm-8">
+                        <div class="col-md-3 col-sm-3">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -116,10 +150,15 @@
                                 <h4>
                                     <strong>Petiscos</strong>
                                 </h4>
-                                <p>Salaminho.....2,00<br>Azeitona.....3,00<br>Provolone....7,00<br>Parmesão.....9,00<br></p>
+                                <p>Salaminho.....2,00
+                                    <br>Azeitona.....3,00
+                                    <br>Provolone....7,00
+                                    <br>Parmesão.....9,00
+                                    <br>
+                                </p>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-sm-8">
+                        <div class="col-md-3 col-sm-3">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -128,10 +167,14 @@
                                 <h4>
                                     <strong>Bebidas</strong>
                                 </h4>
-                                <p>Brahma.......5,00<br>Skol.........6,00<br>Bohemia........9,00<br>Antartica........4,00<br>Devassa...........5,00</p>
+                                <p>Brahma.......5,00
+                                    <br>Skol.........6,00
+                                    <br>Bohemia........9,00
+                                    <br>Antartica........4,00
+                                    <br>Devassa...........5,00</p>
                             </div>
                         </div>
-                        <div class="col-md-3 col-sm-3 col-sm-8">
+                        <div class="col-md-3 col-sm-3">
                             <div class="service-item">
                                 <span class="fa-stack fa-4x">
                                 <i class="fa fa-circle fa-stack-2x"></i>
@@ -140,7 +183,9 @@
                                 <h4>
                                     <strong>Doses</strong>
                                 </h4>
-                                <p>Vodka..........3,00<br>Rum.............4,00<br>Tequila..........3,00</p>
+                                <p>Vodka..........3,00
+                                    <br>Rum.............4,00
+                                    <br>Tequila..........3,00</p>
                             </div>
                         </div>
                     </div>
@@ -225,7 +270,7 @@
                     <p></p>
                     <ul class="list-unstyled">
                         <li><i class="fa fa-phone fa-fw"></i> (31) 9999-9999</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:bardozewifi@gmail.com">bardozewifi@gmail.com</a>
+                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:bardozewifi@gmail.com">bardozewifi@gmail.com</a>
                         </li>
                     </ul>
                     <br>
@@ -253,6 +298,9 @@
         </div>
     </footer>
 
+    <!-- App Facebook -->
+    <script src="js/app.js"></script>
+
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -261,34 +309,34 @@
 
     <!-- Custom Theme JavaScript -->
     <script>
-    // Closes the sidebar menu
-    $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Scrolls to the selected menu item on the page
-    $(function() {
-        $('a[href*=#]:not([href=#])').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
+        // Closes the sidebar menu
+        $("#menu-close").click(function (e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
         });
-    });
+
+        // Opens the sidebar menu
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#sidebar-wrapper").toggleClass("active");
+        });
+
+        // Scrolls to the selected menu item on the page
+        $(function () {
+            $('a[href*=#]:not([href=#])').click(function () {
+                if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                    var target = $(this.hash);
+                    target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                    if (target.length) {
+                        $('html,body').animate({
+                            scrollTop: target.offset().top
+                        }, 1000);
+                        return false;
+                    }
+                }
+            });
+        });
     </script>
 
 </body>
