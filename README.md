@@ -5,6 +5,7 @@
 
 ### Issues and pull requests:
 
+[![Tasks](https://badge.waffle.io/Host32/Shared-Wifi.png?label=task&title=Tasks)](https://waffle.io/Host32/Shared-Wifi)
 [![Stories in Progress](https://badge.waffle.io/Host32/Shared-Wifi.png?label=in%20progress&title=In Progress)](https://waffle.io/Host32/Shared-Wifi)
 
 ## Contribuitors
