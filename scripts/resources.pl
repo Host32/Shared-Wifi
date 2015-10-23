@@ -1,6 +1,8 @@
 #!/usr/bin/perl -W
 
 use File::Find;
+use MIME::Base64;
+use URI::Escape;
 use strict;
 
 my @ directory_list = ('../src/web/');
@@ -32,6 +34,26 @@ sub get_file_content {
    return $ret;
 }
 
+sub get_image_content {
+   my ($filename) = @_;
+
+   my $ret = "";
+   my $raw_image = "";
+   my $image_string = "";
+   open(IN, $filename) or die "Can't open $filename";
+   $raw_image = do{ local $/ = undef; <IN>; };
+   close(IN);
+
+   $image_string = MIME::Base64::encode_base64($raw_image);
+   $image_string =~ s/\\/\\\\/g;
+   $image_string =~ s/\"/\\\"/g;
+   $image_string =~ s/\%/\%\%/g;
+   $image_string =~ s/\n/"\n"/g;
+
+   $ret .= '"' . $image_string . '"' . "\n";
+   return $ret;
+}
+
 #-----------------------------------------------------------------------
 #Process a single file in a directory
 #-----------------------------------------------------------------------
@@ -46,19 +68,32 @@ sub process_file {
        print "$filename - type: $type\n";
        if($type eq "css" || 
           $type eq "js" || 
-          $type eq "html") {
+          $type eq "html" ||
+	  $type eq "jpg" ||
+	  $type eq "jpeg" ||
+	  $type eq "png") {
           $filename_web =~ s/..\/src\/web//;
           my $function_name = $filename_web;
           $function_name =~ s/[\/\.\-]/\_/g;
           $addroutes .= "   add_route(\"$filename_web\",$function_name);\n";  
 
           ###  put file content in one string
-          my $content = get_file_content($filename);
+          my $content = "";
+          my $generic_type = "";
+	  if( $type eq "jpg" ||
+	      $type eq "jpeg" ||
+	      $type eq "png"){
+	     $content = get_image_content($filename);
+             $generic_type = "image";
+	  } else {
+             $content = get_file_content($filename);
+             $generic_type = "text";
+	  }
 
           my $one_function = <<END 
 int $function_name(struct mg_connection *conn)
 {
-    mg_send_header(conn, "Content-Type", "text/$type");
+    mg_send_header(conn, "Content-Type", "$generic_type/$type");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
     mg_printf_data(conn, $content);
     return MG_TRUE;
