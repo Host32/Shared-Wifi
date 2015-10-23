@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/Host32/Shared-Wifi.png?label=ready&title=Ready)](https://waffle.io/Host32/Shared-Wifi)
 # Shared-Wifi
 
 ![logo](http://i.imgur.com/lM1lBjq.png)
