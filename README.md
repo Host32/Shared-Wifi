@@ -1,7 +1,11 @@
-[![Stories in Ready](https://badge.waffle.io/Host32/Shared-Wifi.png?label=ready&title=Ready)](https://waffle.io/Host32/Shared-Wifi)
+
 # Shared-Wifi
 
 ![logo](http://i.imgur.com/lM1lBjq.png)
+
+### Issues and pull requests:
+
+[![Stories in Progress](https://badge.waffle.io/Host32/Shared-Wifi.png?label=in%20progress&title=In Progress)](https://waffle.io/Host32/Shared-Wifi)
 
 ## Contribuitors
 
