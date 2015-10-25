@@ -32,28 +32,27 @@
 
 <body>
 
-    <!-- Navigation -->
-    <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+<a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
     <nav id="sidebar-wrapper">
         <ul class="sidebar-nav">
             <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
             <li class="sidebar-brand">
-                <a href="#top" onclick=$ ( "#menu-close").click();>Bar do Zé</a>
+                <a href="#top"  onclick = $("#menu-close").click(); >Bar do Zé</a>
             </li>
             <li>
-                <a href="#top" onclick=$ ( "#menu-close").click();>Home</a>
+                <a href="#top" onclick = $("#menu-close").click(); >Home</a>
             </li>
             <li>
-                <a href="#wifi" onclick=$ ( "#menu-close").click();>Wifi</a>
+                <a href="#wifi" onclick = $("#menu-close").click(); >Wifi</a>
             </li>
             <li>
-                <a href="#services" onclick=$ ( "#menu-close").click();>Cardápio</a>
+                <a href="#services" onclick = $("#menu-close").click(); >Menu</a>
             </li>
             <li>
-                <a href="#portfolio" onclick=$ ( "#menu-close").click();>Colaboradores</a>
+                <a href="#portfolio" onclick = $("#menu-close").click(); >Colaboradores</a>
             </li>
             <li>
-                <a href="#contact" onclick=$ ( "#menu-close").click();>Contato</a>
+                <a href="#contact" onclick = $("#menu-close").click(); >Contato</a>
             </li>
         </ul>
     </nav>
@@ -72,9 +71,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <span class="fa-stack fa-5x">
-                        <i class="fa fa-circle fa-stack-2x"></i>
-                        <i class="fa fa-wifi fa-stack-1x text-primary"></i>
+                    <span>
+			<img src="img/wifi.png"/>
                     </span>
                     <h1>
                         <strong>Wifi Grátis</strong>
@@ -127,10 +125,9 @@
                     <div class="row">
                         <div class="col-md-3 col-sm-3 col-sm-8">
                             <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cutlery fa-stack-1x text-primary"></i>
-                            </span>
+                                <span>
+                                    <i><img src="img/poc.png"/></i>
+                                </span>
                                 <h4>
                                     <strong>Porções</strong>
                                 </h4>
@@ -143,10 +140,9 @@
                         </div>
                         <div class="col-md-3 col-sm-3">
                             <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-cutlery fa-stack-1x text-primary"></i>
-                            </span>
+				<span>
+                                    <i><img src="img/pet.png"/></i>
+                            	</span>
                                 <h4>
                                     <strong>Petiscos</strong>
                                 </h4>
@@ -160,10 +156,9 @@
                         </div>
                         <div class="col-md-3 col-sm-3">
                             <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-beer fa-stack-1x text-primary"></i>
-                            </span>
+                                <span>
+                                    <i><img src="img/cerv.png"/></i>
+                                </span>
                                 <h4>
                                     <strong>Bebidas</strong>
                                 </h4>
@@ -176,10 +171,9 @@
                         </div>
                         <div class="col-md-3 col-sm-3">
                             <div class="service-item">
-                                <span class="fa-stack fa-4x">
-                                <i class="fa fa-circle fa-stack-2x"></i>
-                                <i class="fa fa-beer fa-stack-1x text-primary"></i>
-                            </span>
+                                <span>
+                                    <i><img src="img/dose.png"/></i>
+                                </span>
                                 <h4>
                                     <strong>Doses</strong>
                                 </h4>
@@ -269,14 +263,14 @@
                     </h4>
                     <p></p>
                     <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (31) 9999-9999</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:bardozewifi@gmail.com">bardozewifi@gmail.com</a>
+                        <li><img src="img/phone.png">   (31) 9999-9999</li>
+                        <li><img src="img/mail.png"><a href="mailto:bardozewifi@gmail.com">  bardozewifi@gmail.com</a>
                         </li>
                     </ul>
                     <br>
                     <ul class="list-inline">
                         <li>
-                            <a href="https://www.facebook.com/Bar-do-Z%C3%A9-549489188538791/timeline/?ref=hl"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                            <a href="https://www.facebook.com/Bar-do-Z%C3%A9-549489188538791/timeline/?ref=hl"><img src="img/facebook.png"></a>
                         </li>
                     </ul>
                 </div>

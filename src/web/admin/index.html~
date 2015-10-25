@@ -211,17 +211,17 @@
                     </h4>
                     <p></p>
                     <ul class="list-unstyled">
-                        <li><i class="fa fa-phone fa-fw"></i> (31) 9999-9999</li>
-                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:sharedwifi@gmail.com">sharedwifi@gmail.com</a>
+                        <li><img src="img/phone.png">   (31) 9999-9999</li>
+                        <li><img src="img/mail.png"><a href="mailto:bardozewifi@gmail.com">  bardozewifi@gmail.com</a>
                         </li>
                     </ul>
                     <br>
                     <ul class="list-inline">
                         <li>
-                            <a href="https://www.facebook.com/Bar-do-Z%C3%A9-549489188538791/timeline/?ref=hl"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                            <a href="https://www.facebook.com/Bar-do-Z%C3%A9-549489188538791/timeline/?ref=hl"><img src="img/facebook.png"></a>
                         </li>
                         <li>
-                            <a href="https://github.com/Host32/Shared-Wifi"><i class="fa fa-github"></i></a>
+                            <a href="https://github.com/Host32/Shared-Wifi"><img src="img/github.png"></a>
                         </li>
                     </ul>
                 </div>
