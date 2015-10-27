@@ -18,7 +18,6 @@
     <link href="css/stylish-portfolio.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -46,7 +45,7 @@
                 <a href="#wifi" onclick = $("#menu-close").click(); >Wifi</a>
             </li>
             <li>
-                <a href="#services" onclick = $("#menu-close").click(); >Menu</a>
+                <a href="#services" onclick = $("#menu-close").click(); >Cardápio</a>
             </li>
             <li>
                 <a href="#portfolio" onclick = $("#menu-close").click(); >Colaboradores</a>
@@ -92,26 +91,19 @@
         <!-- Modal -->
         <div class="modal fade" id="myModal" role="dialog">
             <div class="modal-dialog">
-
-                <!-- Modal content-->
+                <!-- Modal content -->
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Você ainda não curte nossa página!</h4>
-                    </div>
-                    <div class="modal-body">
-                        <p>Por favor, clique no botão para curtir antes de fazer o check-in.</br>
-                            <div class="fb-like" data-href="https://www.facebook.com/549489188538791" data-layout="button" data-action="like" data-show-faces="false" data-share="false"></div>
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                    </div>
-                </div>
 
+                    </div>
+                    <div class="modal-body" id="modal-body"></div>
+                    <div class="modal-footer" id="modal-footer"></div>
+                </div>
+                <!-- / Modal content -->
             </div>
         </div>
-<!-- / Modal -->
+        <!-- / Modal -->
     </section>
 
     <!-- Services -->
@@ -256,7 +248,7 @@
             <div class="row">
                 <div class="col-lg-12 text-center">
                     <h2>Bar do Zé</h2>
-                    <p class="lead">Praça Nossa Senhora do Carmor, MG 36400-000.</p>
+                    <p class="lead">Praça Nossa Senhora do Carmo, MG 36400-000.</p>
                     <p class="lead">Conselheiro Lafaiete</p>
                 </div>
                 <div class="col-lg-10 col-lg-offset-1 text-center">
@@ -291,6 +283,7 @@
             </div>
         </div>
     </footer>
+
 
     <!-- App Facebook -->
     <script src="js/app.js"></script>
