@@ -18,6 +18,31 @@ char *format(int number){
    }
 }  
 
+char *timesist(void){
+
+   int hora, seg, min;
+   char   h[10], m[10], s[10], horas[10];
+   char *tmp; 
+
+   struct tm *local;
+   time_t tsist;
+	
+   //deverá retornar um ponteiro, declaração disponível na documentação da Linguagem C.
+   tsist = time(NULL);
+   local = localtime(&tsist);   
+   hora = local -> tm_hour;
+   min = local -> tm_min;
+   seg = local -> tm_sec;
+    
+   sprintf(h,"%s",format(hora));
+   sprintf(m,"%s",format(min));
+   sprintf(s,"%s",format(seg));
+   sprintf(horas,"%s:%s:%s",h,m,s);
+
+   tmp = horas;
+   return tmp;
+}
+
 char *datesist(void){
 
    int dia,mes,ano;
@@ -45,8 +70,9 @@ char *datesist(void){
 
 /* para fins de testes 
 int main(){
-	char date[50];
+	char date[50], time[50];
 	
 	sprintf(date,"%s",datesist());
-	printf("%s\n",date);
+	sprintf(time,"%s",timesist());
+	printf("\n%s - %s\n\n",date, time);
 }*/
