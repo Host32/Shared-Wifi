@@ -3,9 +3,10 @@
 #include <string.h>
 #include <pthread.h>
 #include <unistd.h>
+#include <time.h>
 
-char *date(void);
-//char *time(void); em desenvolvimento
+char *datesist(void);
+char *timesist(void); 
 
 
 
