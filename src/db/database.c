@@ -300,19 +300,19 @@ int delete_log(char user_id[30]) {
 				
                         msg = sqlite3_prepare_v2(conn, sql_delete_log, -1, &stmt, 0);
                         
-                        if (msg != SQLITE_OK ) {
-                            fprintf(stderr, "SQL error: %s\n", errMsg);
-                            close_db();
+		                if (msg != SQLITE_OK ) {
+		                    fprintf(stderr, "SQL error: %s\n", errMsg);
+		                    close_db();
 
-                            return 1;
-                        } else {
-                            sqlite3_bind_int(stmt, 1, id);
-                            sqlite3_step(stmt);
-							sqlite3_finalize(stmt);
-							
+		                    return 1;
+		                } else {
+		                    sqlite3_bind_int(stmt, 1, id);
+		                    sqlite3_step(stmt);
+				    
+							sqlite3_finalize(stmt);			
 							close_db();
 							return 0;
-                        }
+		                }
 			}
 
     } else {
@@ -328,7 +328,7 @@ int log_exists(int fk_id) {
     if (connect_db() == 0) {
         	
         	sqlite3_prepare_v2(conn, sql_query_log, -1, &stmt, 0);
-            sqlite3_bind_int(stmt, 1, fk_id);
+            	sqlite3_bind_int(stmt, 1, fk_id);
 			    
 			if (sqlite3_step(stmt) == SQLITE_ROW) {
                 return 0;
