@@ -8,15 +8,23 @@
 #ifndef __DATABASE__
 #define __DATABASE__
 
+#define S_USERID 30
+#define S_BIRTHDAY 12
+#define S_LINK 100
+#define S_NAME 100
+#define S_LOCATION 100
+#define S_GENDER 10
+#define S_EMAIL 80
+
 typedef struct{
 	int id;
-    char user_id[30];
-    char birthday[12];
-	char link[100];
-	char name[100];
-    char location[100];
-    char gender[10];
-	char email[80]; 
+    char user_id[S_USERID];
+    char birthday[S_BIRTHDAY];
+	char link[S_LINK];
+	char name[S_NAME];
+    char location[S_LOCATION];
+    char gender[S_GENDER];
+	char email[S_EMAIL]; 
 } cliente;
 
 
@@ -28,12 +36,12 @@ int create_table();
 
 int insert_client(cliente c);
 int update_client(cliente c);
-int delete_client(char user_id[30]);
-int user_exists(char user_id[30]);
+int delete_client(char user_id[S_USERID]);
+int user_exists(char user_id[S_USERID]);
 int list_all_clients();
 
-int insert_log(char user_id[30]);
-int delete_log(char user_id[30]);
+int insert_log(char user_id[S_USERID]);
+int delete_log(char user_id[S_USERID]);
 int log_exists(int fk_id);
 int list_all_logs();
 
