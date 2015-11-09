@@ -4,7 +4,6 @@ sqlite3 *conn;
 sqlite3_stmt *stmt;
 int msg;
 
-char *errMsg = 0;
 
 const char* sql_pragma;
 
@@ -31,7 +30,6 @@ int connect_db(){
 		sql_pragma = "PRAGMA foreign_keys = ON;";
 		msg = sqlite3_exec(conn, sql_pragma, 0, 0, 0);
 		if (msg != SQLITE_OK ) {
-				sqlite3_close(conn);
 				return 1;
 		} else return 0;
 	} 
@@ -39,19 +37,18 @@ int connect_db(){
 }
 
 void close_db() {
-	sqlite3_finalize(stmt);
-    sqlite3_free(errMsg);
 	sqlite3_close(conn);
+	//fprintf(stderr, "CLOSE - %s\n", sqlite3_errmsg(conn));
 }
 
 static int callback(void *data, int argc, char **argv, char **azColName){
-  int i;
-  fprintf(stderr, "%s: ", (const char*)data);
-  for (i = 0; i<argc; i++){
-    printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
-  }
-  printf("\n");
-  return 0;
+	int i;
+	fprintf(stderr, "%s: ", (const char*)data);
+	for (i = 0; i<argc; i++){
+		printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+	}
+	printf("\n");
+	return 0;
 }
 
 
@@ -69,13 +66,13 @@ int create_table() {
 
     } else { 
 	
-        msg = sqlite3_exec(conn, sql_create_client, callback, 0, &errMsg);
+        msg = sqlite3_exec(conn, sql_create_client, callback, 0, 0);
 
 		if (msg != SQLITE_OK ) {
             close_db();	
             return 1;
         } else {
-                msg = sqlite3_exec(conn, sql_create_log, callback, 0, &errMsg);
+                msg = sqlite3_exec(conn, sql_create_log, callback, 0, 0);
 				if (msg != SQLITE_OK ) {
 					close_db();
 					return 1;
@@ -95,11 +92,13 @@ int create_table() {
 // TAB : CLIENTE
 int insert_client(cliente c) {  
     sql_insert_client = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-    
+    char aux[S_USERID];
+    strncpy(aux, c.user_id, S_USERID);
+    			
     if (connect_db() == SQLITE_OK) {
 		if(user_exists(c.user_id) == -1){
 			sqlite3_prepare_v2(conn, sql_insert_client, -1, &stmt, NULL);
-					
+		
 			const char* user_id = c.user_id;
 			const char* birthday = c.birthday;
 			const char* link = c.link;
@@ -119,11 +118,12 @@ int insert_client(cliente c) {
 					
 			sqlite3_step(stmt);
 			sqlite3_finalize(stmt);
-
+					
 			close_db();
-			
+			insert_log(aux);
 			return 0;
-		}
+		} 
+		else insert_log(aux);
 
     } else {
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
@@ -135,12 +135,15 @@ int insert_client(cliente c) {
 }
 
 int update_client(cliente c) {
-    sql_update_client = "UPDATE cliente SET birthday = ?, link = ?, name = ?, location = ?, gender = ?, email = ? WHERE user_id = ?;";
-
+    sql_update_client = "UPDATE cliente SET birthday = ?, link = ?, name = ?, location = ?, gender = ?, email = ? WHERE user_id = ?;";	
+    
+    int id = user_exists(c.user_id);
+    
     if (connect_db() == 0) {
-		if(user_exists(c.user_id) != -1){
+		if(id != -1){
+
 			sqlite3_prepare_v2(conn, sql_update_client, -1, &stmt, NULL);
-			
+
 			const char* user_id = c.user_id;		
 			const char* birthday = c.birthday;
 			const char* link = c.link;
@@ -156,42 +159,41 @@ int update_client(cliente c) {
 			sqlite3_bind_text(stmt, 5, gender, -1, SQLITE_STATIC);
 			sqlite3_bind_text(stmt, 6, email, -1, SQLITE_STATIC);
 			sqlite3_bind_text(stmt, 7, user_id, -1, SQLITE_STATIC);
-			
-			if (sqlite3_step(stmt) == SQLITE_OK){
-				sqlite3_finalize(stmt);
-				close_db();
-				return 0;
-			} else {
-				fprintf(stderr, "Erro: %s\n", sqlite3_errmsg(conn));
-				close_db();
-				return 1;		
-			}	
+
+			sqlite3_step(stmt);
+			sqlite3_finalize(stmt);
+
+			close_db();
+			fprintf(stderr, "Error: %s\n", sqlite3_errmsg(conn));
+			return 0;
+	
 		} else {
 			fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
 			close_db();
 
 			return 1;
 		}
-    } 
+    } else return 1;
         
 }
 
-int delete_client(char user_id[30]) {   
-    sql_delete_client = "DELETE FROM cliente WHERE user_id = ?;";
+int delete_client(char user_id[S_USERID]) {   
+	int id = user_exists(user_id);
+    sql_delete_client = "DELETE FROM cliente WHERE id = ?;";
 
     if (connect_db() == 0) {
-			if(user_exists(user_id) != -1){
-                        msg = sqlite3_prepare_v2(conn, sql_delete_client, -1, &stmt, 0);
+			if(id != -1){
+                       msg = sqlite3_prepare_v2(conn, sql_delete_client, -1, &stmt, 0);
+                        
                         if (msg != SQLITE_OK ) {
-                            fprintf(stderr, "SQL error: %s\n", errMsg);
                             close_db();
 
                             return 1;
                         } else {
-                            sqlite3_bind_text(stmt, 1, user_id, -1, SQLITE_STATIC);
+                            sqlite3_bind_int(stmt, 1, id);
                             sqlite3_step(stmt);
 							sqlite3_finalize(stmt);
-
+							
 							close_db();
 							return 0;
                         }
@@ -205,16 +207,15 @@ int delete_client(char user_id[30]) {
     }
 }
 
-int user_exists(char user_id[30]) {    
+int user_exists(char user_id[S_USERID]) {    
     sql_query_client = "SELECT id FROM cliente WHERE user_id = ?;";
 
     if (connect_db() == 0) {
-
         	sqlite3_prepare_v2(conn, sql_query_client, -1, &stmt, NULL);
-            sqlite3_bind_text(stmt, 1, user_id, strlen(user_id),0);
-			    
+            sqlite3_bind_text(stmt, 1, user_id, strlen(user_id),0);  
 			if (sqlite3_step(stmt) == SQLITE_ROW) {
 				int aux = atoi((char*)sqlite3_column_text(stmt, 0));
+				sqlite3_finalize(stmt);
 				close_db();
 				return aux;
 			} else return -1;
@@ -253,7 +254,6 @@ int list_all_clients() {
 			}
 			
 			sqlite3_finalize(stmt);
-			sqlite3_reset(stmt);
 
 			close_db();
 			return 0;
@@ -267,23 +267,25 @@ int list_all_clients() {
 
 
 // TABLE : LOG
-int insert_log(char user_id[30]) { 
-    int fk_id = user_exists(user_id);
+int insert_log(char user_id[S_USERID]) { 
+    int fk_id = user_exists(user_id);  
+    
     sql_insert_log = "INSERT INTO log VALUES (?,datetime('now', 'localtime'),?);";
 	
     if (connect_db() == 0) {
+		if(fk_id != -1){
+			
 			sqlite3_prepare_v2(conn, sql_insert_log, -1, &stmt, NULL);
 			
 			sqlite3_bind_null(stmt,1);					
 			sqlite3_bind_int(stmt, 2, fk_id);
 			
-			if (sqlite3_step(stmt) != SQLITE_OK) {
-				return 1;
-			} 					
-			
-			sqlite3_finalize(stmt);
+			sqlite3_step(stmt);	
+			sqlite3_finalize(stmt);					
 			close_db();
 			return 0;
+		}
+		else return 1;
     } else {
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
         close_db();
@@ -291,7 +293,7 @@ int insert_log(char user_id[30]) {
 	}       
 }
 
-int delete_log(char user_id[30]) { 
+int delete_log(char user_id[S_USERID]) { 
 	int id = user_exists(user_id);
     sql_delete_log = "DELETE FROM log WHERE fk_id = ?;";
 
@@ -300,19 +302,18 @@ int delete_log(char user_id[30]) {
 				
                         msg = sqlite3_prepare_v2(conn, sql_delete_log, -1, &stmt, 0);
                         
-		                if (msg != SQLITE_OK ) {
-		                    fprintf(stderr, "SQL error: %s\n", errMsg);
-		                    close_db();
+                        if (msg != SQLITE_OK ) {
+                            close_db();
 
-		                    return 1;
-		                } else {
-		                    sqlite3_bind_int(stmt, 1, id);
-		                    sqlite3_step(stmt);
-				    
-							sqlite3_finalize(stmt);			
+                            return 1;
+                        } else {
+                            sqlite3_bind_int(stmt, 1, id);
+                            sqlite3_step(stmt);
+							sqlite3_finalize(stmt);
+							
 							close_db();
 							return 0;
-		                }
+                        }
 			}
 
     } else {
@@ -328,7 +329,7 @@ int log_exists(int fk_id) {
     if (connect_db() == 0) {
         	
         	sqlite3_prepare_v2(conn, sql_query_log, -1, &stmt, 0);
-            	sqlite3_bind_int(stmt, 1, fk_id);
+            sqlite3_bind_int(stmt, 1, fk_id);
 			    
 			if (sqlite3_step(stmt) == SQLITE_ROW) {
                 return 0;
