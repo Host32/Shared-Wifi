@@ -124,13 +124,13 @@ int insert_client(cliente c) {
 			return 0;
 		} 
 		else insert_log(aux);
-
+		return 0;
     } else {
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
         
         close_db();
         return 1;
-	}
+    }
         
 }
 
@@ -228,25 +228,24 @@ int user_exists(char user_id[S_USERID]) {
 
 int list_all_clients() {	
 	const char *user_id, *birthday, *link, *name, *location, *gender, *email;
-	int id, ncols; 
+	int id; 
 	sql_query_client = "SELECT * FROM cliente;";
 	
 	if (connect_db() == 0) {
 
 			sqlite3_prepare_v2(conn, sql_query_client, -1, &stmt, NULL);
 
-			ncols = sqlite3_column_count(stmt);
 			msg = sqlite3_step(stmt);
 
 			while(msg == SQLITE_ROW) {
 				id = sqlite3_column_int(stmt, 0);
-				user_id = sqlite3_column_text(stmt, 1);
-				birthday = sqlite3_column_text(stmt, 2);
-				link = sqlite3_column_text(stmt, 3);
-				name = sqlite3_column_text(stmt, 4);
-				location = sqlite3_column_text(stmt, 5);
-				gender = sqlite3_column_text(stmt, 6);
-				email = sqlite3_column_text(stmt, 7); 
+				user_id = (char*)sqlite3_column_text(stmt, 1);
+				birthday = (char*)sqlite3_column_text(stmt, 2);
+				link = (char*)sqlite3_column_text(stmt, 3);
+				name = (char*)sqlite3_column_text(stmt, 4);
+				location = (char*)sqlite3_column_text(stmt, 5);
+				gender = (char*)sqlite3_column_text(stmt, 6);
+				email = (char*)sqlite3_column_text(stmt, 7); 
 
 				fprintf(stderr, "Row: id = '%d', user_id = '%s', birthday = '%s', link = '%s', name = '%s', location = '%s', gender = '%s', email = '%s'\n", id, user_id, birthday, link, name, location, gender, email);	
 
@@ -314,6 +313,8 @@ int delete_log(char user_id[S_USERID]) {
 							close_db();
 							return 0;
                         }
+			} else {
+				return 1;			
 			}
 
     } else {
@@ -331,9 +332,11 @@ int log_exists(int fk_id) {
         	sqlite3_prepare_v2(conn, sql_query_log, -1, &stmt, 0);
             sqlite3_bind_int(stmt, 1, fk_id);
 			    
-			if (sqlite3_step(stmt) == SQLITE_ROW) {
+	if (sqlite3_step(stmt) == SQLITE_ROW) {
                 return 0;
-			}
+	} else{
+		return 1;	
+	}
 
     } else{
 			fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
@@ -344,20 +347,19 @@ int log_exists(int fk_id) {
 
 int list_all_logs() {
 	const char *created_at;
-	int i, ncols, id;
+	int id, fk_id;
 	sql_query_log = "SELECT * FROM log;";
 
 	if (connect_db() == 0) {
 
 			sqlite3_prepare_v2(conn, sql_query_log, -1, &stmt, NULL);
 
-			int ncols = sqlite3_column_count(stmt);
 			msg = sqlite3_step(stmt);
 
 			while(msg == SQLITE_ROW) {
 				id = sqlite3_column_int(stmt, 0);
-				created_at = sqlite3_column_text(stmt, 1);
-				int fk_id = sqlite3_column_int(stmt, 2);
+				created_at = (char*)sqlite3_column_text(stmt, 1);
+				fk_id = sqlite3_column_int(stmt, 2);
 
 				fprintf(stderr, "Row: id = '%d', created_at = '%s', fk_id = '%d'\n", id, created_at, fk_id);	
 				msg = sqlite3_step(stmt);
