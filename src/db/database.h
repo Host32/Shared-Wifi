@@ -3,7 +3,7 @@
 #include <string.h>
 #include <pthread.h>
 #include <unistd.h>
-#include "../3rdparty/sqlite3.h"
+#include "../../3rdparty/sqlite3.h"
 
 #ifndef __DATABASE__
 #define __DATABASE__
