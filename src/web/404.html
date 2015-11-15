@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -10,42 +11,48 @@
 </head>
 
 <body>
-	<style type="text/css">
-	body{
-		background-color: #4c4c4c;
-		text-align: center;
-	}
-	.imagem{
-		margin-top:6%;
-	}
-	.mensagem{
-		color: #dfdfdf;
-		font-family: arial;
-	}
-	.button{
-		border-radius: 5px;
-		
-	}
-	.margem{
-		margin: 4px;
-	}
-	</style>
-	
-	
-	<div>
-		<img class="imagem" src="img/404img.jpg">
-	</div>
-	<div class="mensagem">
-		<p>Check your connection or try one of the links below</p>
-		<p>Verifique sua conexão ou tente um dos links abaixo</p>
-	</div>
-	<a class="margem" href="index.html">
-		<img class="button" src="img/b1.jpg"/>
-	</a>
-	<a class="margem" href="index.html">
-		<img class="button" src="img/b2.jpg"/>
-	</a>
+    <style type="text/css">
+        body {
+            background-color: #4c4c4c;
+            text-align: center;
+        }
+
+        .imagem {
+            margin-top: 6%;
+        }
+
+        .mensagem {
+            color: #dfdfdf;
+            font-family: arial;
+        }
+
+        .button {
+            border-radius: 5px;
+        }
+
+        .margem {
+            margin: 4px;
+        }
+    </style>
+
+
+    <div>
+        <img class="imagem" data-src="img/404img.jpg">
+    </div>
+    <div class="mensagem">
+        <p>Check your connection or try one of the links below</p>
+        <p>Verifique sua conexão ou tente um dos links abaixo</p>
+    </div>
+    <a class="margem" href="index.html">
+        <img class="button" data-src="img/b1.jpg" />
+    </a>
+    <a class="margem" href="index.html">
+        <img class="button" data-src="img/b2.jpg" />
+    </a>
 
 </body>
+
+<!-- Custom Image loader -->
+<script src="js/image_loader.js"></script>
 
 </html>
