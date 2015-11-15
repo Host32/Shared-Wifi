@@ -69,9 +69,10 @@ sub process_file {
        if($type eq "css" || 
           $type eq "js" || 
           $type eq "html" ||
-	  $type eq "jpg" ||
-	  $type eq "jpeg" ||
-	  $type eq "png") {
+          $type eq "jpg" ||
+          $type eq "jpeg" ||
+          $type eq "png") {
+
           $filename_web =~ s/..\/src\/web//;
           my $function_name = $filename_web;
           $function_name =~ s/[\/\.\-]/\_/g;
@@ -79,21 +80,19 @@ sub process_file {
 
           ###  put file content in one string
           my $content = "";
-          my $generic_type = "";
 	  if( $type eq "jpg" ||
 	      $type eq "jpeg" ||
 	      $type eq "png"){
-	     $content = get_image_content($filename);
-             $generic_type = "image";
+          $content = get_image_content($filename);
+          $type = "txt";
 	  } else {
              $content = get_file_content($filename);
-             $generic_type = "text";
 	  }
 
           my $one_function = <<END 
 int $function_name(struct mg_connection *conn)
 {
-    mg_send_header(conn, "Content-Type", "$generic_type/$type");
+    mg_send_header(conn, "Content-Type", "text/$type");
     mg_send_header(conn, "Cache-Control", "public, max-age=604800");
     mg_printf_data(conn, $content);
     return MG_TRUE;
