@@ -5,6 +5,9 @@
 #include "../3rdparty/sqlite3.h"
 #include "routes.h"
 #include "resources.h"
+#include "network/ap.h"
+#include "network/iptables.h"
+#include "network/dhcp.h"
 
 static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
 	int exec_result;
@@ -31,6 +34,11 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
 
 int main(void){
 	struct mg_server *server;
+
+    // Start network configurations
+    setup_ap();
+    setup_dhcp();
+    setup_iptables();
 
 	// Create and configure the server
 	server = mg_create_server(NULL, ev_handler);
