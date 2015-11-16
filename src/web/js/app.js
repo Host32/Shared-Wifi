@@ -1,33 +1,49 @@
 (function (FB, $) {
     'use strict';
 
-    // Closes the sidebar menu
-    $("#menu-close").click(function (e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
-    // Opens the sidebar menu
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-
     // Scrolls to the selected menu item on the page
     $(function () {
-        $('a[href*=#]:not([href=#])').click(function () {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+	$('a[href*=#]:not([href=#])').click(function () {
+	    if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
+		var target = $(this.hash);
+		target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+		if (target.length) {
+		    $('html,body').animate({
+		        scrollTop: target.offset().top
+		    }, 1000);
+		    return false;
+		}
+	    }
+	});
+    
+	    // header background
+	    $.ajax({
+		url: 'img/bg.jpg',
+		success: function (data) {
+		    $('.header').css('background-image', 'url(data:image/png;base64,' + data + ')');
+		}
+	    });
+
+	    // callout bacground
+	    $.ajax({
+		url: 'img/callout.jpg',
+		success: function (data) {
+		    $('.callout').css('background-image', 'url(data:image/png;base64,' + data + ')');
+		}
+	    });
+
+	    // Closes the sidebar menu
+	    $("#menu-close").click(function (e) {
+		e.preventDefault();
+		$("#sidebar-wrapper").toggleClass("active");
+	    });
+
+	    // Opens the sidebar menu
+	    $("#menu-toggle").click(function (e) {
+		e.preventDefault();
+		$("#sidebar-wrapper").toggleClass("active");
+	    });
     });
 
     function showModal(aux) {

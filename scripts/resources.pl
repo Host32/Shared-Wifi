@@ -28,7 +28,7 @@ sub get_file_content {
       $line =~ s/\\/\\\\/g;
       $line =~ s/\"/\\\"/g;
       $line =~ s/\%/\%\%/g;
-      $ret .= '"' . $line . '"' . "\n";
+      $ret .= '"' . $line . '\n"' . "\n";
    }
    close(IN);
    return $ret;

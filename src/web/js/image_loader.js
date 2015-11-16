@@ -3,11 +3,12 @@
 
     $(function () {
         $('img').each(function () {
-            var src = $(this).data('src');
+            var src = $(this).data('src'),
+		elem = $(this);
             $.ajax({
                 url: src,
                 success: function (data) {
-                    $(this).attr('src', 'data:image/png;base64,' + data);
+                    elem.attr('src', 'data:image/png;base64,' + data);
                 }
             });
         });
