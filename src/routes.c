@@ -49,7 +49,7 @@ int exec_route(const char *path, struct mg_connection *conn) {
 		strncpy(prefix, path, LEN_PREFIX_ROUTE_TABLE);
 	}
 	
-	for (i = 0; i < (route_to_fill - 1); i++) {
+	for (i = 0; i < route_to_fill; i++) {
 		aux = route_array[i];
 		if ((rc = strcmp(aux.prefix, prefix)) == 0) {
 			return aux.fn(conn);
@@ -57,7 +57,7 @@ int exec_route(const char *path, struct mg_connection *conn) {
 	}
 	
 	if(path_404_defined){
-		for (i = 0; i < (route_to_fill - 1); i++) {
+		for (i = 0; i < route_to_fill; i++) {
 			aux2 = route_array[i];
 			if ((rc = strcmp(aux2.prefix, path_404)) == 0) {
 				return aux2.fn(conn);
