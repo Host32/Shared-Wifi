@@ -1,5 +1,15 @@
 #include "ap.h"
+/**
+ * Arquivo de configuracao:
+ * /etc/hostapd/hostapd.conf
+ * TODO: gerar esse arquivo automaticamente
 
+interface=wlan0
+ssid=mimimi
+channel=6
+
+ *
+ */
 int setup_ap(){
     system("apt-get install hostapd");
     system("service network-manager stop");
