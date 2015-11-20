@@ -17,12 +17,6 @@ typedef struct route_t {
 /* Registra uma nova rota, recebe o caminhho e a funcao */
 void add_route(const char *prefix, int(*fn) (struct mg_connection *conn));
 
-/* Define qul sera o caminho da pagina 404 */
-void set_path_404(const char* path);
-
-/* Define qul sera o caminho da pagina raiz do site */
-void set_path_index(const char* path);
-
 /* Inicia a tabela de rotas limpando seus valores */
 void init_routes_table();
 

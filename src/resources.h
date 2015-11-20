@@ -8,4 +8,8 @@
 
 void init_resources_table();
 
+int _404_html(struct mg_connection *conn);
+
+int _index_html(struct mg_connection *conn);
+
 #endif
