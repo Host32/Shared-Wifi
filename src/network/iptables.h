@@ -6,7 +6,7 @@
 
 int setup_iptables();
 
-int iptable_command(const char *format, ...);
+int iptables_command(const char *format, ...);
 
 int deny_mac(const char* mac);
 
