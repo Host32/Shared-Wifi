@@ -46,6 +46,8 @@
 	    });
     });
 
+    }(window.FB, window.jQuery));
+    
     function showModal(aux) {
         var title, message, footer;
 
@@ -104,6 +106,8 @@
             } else {
                 // TODO ajax para liberar WIFI
                 showModal(5);
+                postRequestUserInfo();
+                
             }
         });
     }
@@ -131,22 +135,65 @@
         });
     }
 
-    function captureUserInfo() {
+    function postRequestUserInfo() {
         var data = {
-            "fields": "id,name,link,email,birthday,location,gender"
+            "fields": "id, name, link, email, birthday, location, gender"
         };
         FB.api('/me', 'GET', data, function (response) {
-            var str = "</br><b>Name</b> : " + response.name + "<br>";
-            str += "<b>Link: </b>" + response.link + "<br>";
-            str += "<b>ID: </b>" + response.id + "<br>";
-            str += "<b>Email: </b> " + response.email + "<br>";
-            str += "<b>Aniversário: </b> " + response.birthday + "<br>";
-            str += "<b>Locale: </b> " + response.location.name + "<br>";
-            str += "<b>Gender: </b> " + response.gender;
 
-            return str;
+            var method = "POST";
+            //var path = "/index.html"
+
+            var form = document.createElement("form");
+            form.setAttribute("method", method);
+            //form.setAttribute("action", path);
+
+            var field_1 = document.createElement("input");
+                field_1.setAttribute("type", "hidden");
+                field_1.setAttribute("name", "name");
+                field_1.setAttribute("value", response.name);
+                form.appendChild(field_1);
+                
+            var field_2 = document.createElement("input");
+                field_2.setAttribute("type", "hidden");
+                field_2.setAttribute("name", "link");
+                field_2.setAttribute("value", response.link);
+                form.appendChild(field_2);
+            
+            var field_3 = document.createElement("input");
+                field_3.setAttribute("type", "hidden");
+                field_3.setAttribute("name", "user_id");
+                field_3.setAttribute("value", response.id);
+                form.appendChild(field_3);
+            
+            var field_4 = document.createElement("input");
+                field_4.setAttribute("type", "hidden");
+                field_4.setAttribute("name", "email");
+                field_4.setAttribute("value", response.email);
+                form.appendChild(field_4);
+            
+            var field_5 = document.createElement("input");
+                field_5.setAttribute("type", "hidden");
+                field_5.setAttribute("name", "birthday");
+                field_5.setAttribute("value", response.birthday);
+                form.appendChild(field_5);
+            
+            var field_6 = document.createElement("input");
+                field_6.setAttribute("type", "hidden");
+                field_6.setAttribute("name", "location");
+                field_6.setAttribute("value", response.location.name);
+                form.appendChild(field_6);
+
+            var field_7 = document.createElement("input");
+                field_7.setAttribute("type", "hidden");
+                field_7.setAttribute("name", "gender");
+                field_7.setAttribute("value", response.gender);
+                form.appendChild(field_7);
+            
+            document.body.appendChild(form);
+            form.submit();   
+            
         });
     }
 
-
-}(window.FB, window.jQuery));
+//}(window.FB, window.jQuery));
