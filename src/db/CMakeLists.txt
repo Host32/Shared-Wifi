@@ -1,2 +1,3 @@
 add_library(database database.c)
-add_library(datetime datetime.c)
+
+target_link_libraries(database sqlite3)

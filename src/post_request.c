@@ -25,7 +25,7 @@ int handle_post_request(struct mg_connection *conn) {
 	strncpy(c.gender, gender, S_GENDER);
 	
 	//create_table();
-	//insert_client(c);
+    insert_client(c);
 			
 	return 1;
 }

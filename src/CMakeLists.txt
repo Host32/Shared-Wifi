@@ -14,6 +14,8 @@ add_library(resources resources.c)
 
 add_library(post_request post_request.c)
 
+target_link_libraries(post_request database)
+
 target_link_libraries(SharedWifi mongoose)
 
 target_link_libraries(SharedWifi sqlite3)
