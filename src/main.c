@@ -8,6 +8,7 @@
 #include "network/ap.h"
 #include "network/iptables.h"
 #include "network/dhcp.h"
+#include "post_request.h"
 
 static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
 	int exec_result;
@@ -17,7 +18,12 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
             return MG_MORE;
         case MG_REQUEST:
 			fprintf(stdout, "Processing %s\n", conn->uri);
-            
+            		
+			if (strncmp(conn->request_method, "POST", 4) == 0) {
+				fprintf(stdout, "Content: %s\n", conn->content);
+				handle_post_request(conn);
+			}
+			
 			exec_result = exec_route(conn->uri, conn);
 
 			if (exec_result == 404) {
