@@ -30,10 +30,15 @@ int connect_db(){
 		sql_pragma = "PRAGMA foreign_keys = ON;";
 		msg = sqlite3_exec(conn, sql_pragma, 0, 0, 0);
 		if (msg != SQLITE_OK ) {
-				return 1;
-		} else return 0;
+            return 1;
+        } else {
+            fprintf(stdout, "Erro ao conectar ao banco, erro ao tentar ativar foreign_keys");
+            return 0;
+        }
 	} 
-    return 1;    
+
+    fprintf(stdout, "Erro ao conectar ao banco, SQLITE_OK false");
+    return 0;
 }
 
 void close_db() {
@@ -59,8 +64,8 @@ int create_table() {
 
     int r = connect_db();
 	if (r != SQLITE_OK) {
-        
-        fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
+
+        fprintf(stdout, "Cannot open database: %s\n", sqlite3_errmsg(conn));
         close_db();
         return 0;
 
@@ -69,22 +74,20 @@ int create_table() {
         msg = sqlite3_exec(conn, sql_create_client, callback, 0, 0);
 
 		if (msg != SQLITE_OK ) {
+            fprintf(stdout, "Cannot exec create_client: %s\n", sqlite3_errmsg(conn));
             close_db();	
-            return 1;
+            return 0;
         } else {
-                msg = sqlite3_exec(conn, sql_create_log, callback, 0, 0);
-				if (msg != SQLITE_OK ) {
-					close_db();
-					return 1;
-				} else {
-						fprintf(stdout, "Operation done successfully\n");
-						return 0;
-				}
-				return 1;	
-			}
-		
-        close_db();
-        return 0;
+            msg = sqlite3_exec(conn, sql_create_log, callback, 0, 0);
+            if (msg != SQLITE_OK ) {
+                fprintf(stdout, "Cannot exec create_log: %s\n", sqlite3_errmsg(conn));
+                close_db();
+                return 0;
+            } else {
+                close_db();
+                return 1;
+            }
+        }
     }
 }
 
@@ -121,15 +124,18 @@ int insert_client(cliente c) {
 					
 			close_db();
 			insert_log(aux);
-			return 0;
+            return 1;
 		} 
-		else insert_log(aux);
-		return 0;
+        else {
+            close_db();
+            insert_log(aux);
+            return 1;
+        }
     } else {
         fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
         
         close_db();
-        return 1;
+        return 0;
     }
         
 }
@@ -282,13 +288,15 @@ int insert_log(char user_id[S_USERID]) {
 			sqlite3_step(stmt);	
 			sqlite3_finalize(stmt);					
 			close_db();
-			return 0;
-		}
-		else return 1;
+            return 1;
+        } else {
+            fprintf(stdout, "Usuario nao existe");
+            return 0;
+        }
     } else {
-        fprintf(stderr, "Cannot open database: %s\n", sqlite3_errmsg(conn));
+        fprintf(stdout, "Cannot open database: %s\n", sqlite3_errmsg(conn));
         close_db();
-        return 1;
+        return 0;
 	}       
 }
 

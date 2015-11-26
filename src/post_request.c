@@ -23,9 +23,6 @@ int handle_post_request(struct mg_connection *conn) {
 	strncpy(c.location, location, S_LOCATION);
 	strncpy(c.link, link, S_LINK);
 	strncpy(c.gender, gender, S_GENDER);
-	
-	//create_table();
-    insert_client(c);
 			
-	return 1;
+    return insert_client(c);
 }

@@ -18,9 +18,11 @@ target_link_libraries(post_request database)
 
 target_link_libraries(SharedWifi mongoose)
 
+target_link_libraries(SharedWifi ${CMAKE_THREAD_LIBS_INIT})
+
 target_link_libraries(SharedWifi sqlite3)
 
-target_link_libraries(SharedWifi ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(SharedWifi database)
 
 target_link_libraries(SharedWifi routes)
 
