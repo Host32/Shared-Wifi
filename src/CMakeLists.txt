@@ -14,11 +14,15 @@ add_library(resources resources.c)
 
 add_library(post_request post_request.c)
 
+target_link_libraries(post_request database)
+
 target_link_libraries(SharedWifi mongoose)
+
+target_link_libraries(SharedWifi ${CMAKE_THREAD_LIBS_INIT})
 
 target_link_libraries(SharedWifi sqlite3)
 
-target_link_libraries(SharedWifi ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(SharedWifi database)
 
 target_link_libraries(SharedWifi routes)
 
@@ -33,4 +37,8 @@ target_link_libraries(SharedWifi dhcp)
 target_link_libraries(SharedWifi post_request)
 
 set(CMAKE_C_FLAGS "-std=c99")
+
+add_custom_command(TARGET SharedWifi POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_directory
+                       ${CMAKE_SOURCE_DIR}/src/conf $<TARGET_FILE_DIR:SharedWifi>/conf)
 
