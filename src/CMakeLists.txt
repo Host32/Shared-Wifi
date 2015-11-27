@@ -38,3 +38,7 @@ target_link_libraries(SharedWifi post_request)
 
 set(CMAKE_C_FLAGS "-std=c99")
 
+add_custom_command(TARGET SharedWifi POST_BUILD
+                    COMMAND ${CMAKE_COMMAND} -E copy_directory
+                       ${CMAKE_SOURCE_DIR}/src/conf $<TARGET_FILE_DIR:SharedWifi>/conf)
+
