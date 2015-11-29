@@ -12,9 +12,9 @@ add_library(routes routes.c)
 
 add_library(resources resources.c)
 
-add_library(post_request post_request.c)
+add_library(authenticator authenticator.c)
 
-target_link_libraries(post_request database)
+target_link_libraries(authenticator database)
 
 target_link_libraries(SharedWifi mongoose)
 
@@ -34,7 +34,7 @@ target_link_libraries(SharedWifi ap)
 
 target_link_libraries(SharedWifi dhcp)
 
-target_link_libraries(SharedWifi post_request)
+target_link_libraries(SharedWifi authenticator)
 
 set(CMAKE_C_FLAGS "-std=c99")
 

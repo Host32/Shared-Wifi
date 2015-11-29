@@ -1,6 +1,6 @@
-#include "post_request.h"
+#include "authenticator.h"
 
-int handle_post_request(struct mg_connection *conn) {
+int authenticate(struct mg_connection *conn) {
 
 	cliente c;
 

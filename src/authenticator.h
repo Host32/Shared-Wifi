@@ -6,6 +6,6 @@
 #ifndef __REQUEST__
 #define __REQUEST__
 
-int handle_post_request(struct mg_connection *conn); 
+int authenticate(struct mg_connection *conn); 
 
 #endif

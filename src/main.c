@@ -5,7 +5,7 @@
 #include "../3rdparty/sqlite3.h"
 #include "routes.h"
 #include "resources.h"
-#include "post_request.h"
+#include "authenticator.h"
 #include "db/database.h"
 #include "network/ap.h"
 #include "network/iptables.h"
@@ -36,11 +36,22 @@ static int ev_handler(struct mg_connection *conn, enum mg_event ev) {
 
 int main(void){
 	struct mg_server *server;
+	
+	// valida as dependencias
+	if(system("which dhcpd") == 256){
+		fprintf(stdout, "Dependencia isc-dhcp-server não encontrada\n");
+		return;
+	}
 
-    // Start network configurations
-    //setup_ap();
-    //setup_dhcp();
-    //setup_iptables();
+	if(system("which hostapd") == 256){
+		fprintf(stdout, "Dependencia hostapd não encontrada\n");
+		return;
+	}
+
+	// Start network configurations
+	setup_ap();
+	setup_dhcp();
+	//setup_iptables();
 
 	// Create and configure the server
 	server = mg_create_server(NULL, ev_handler);
@@ -50,10 +61,10 @@ int main(void){
 	init_routes_table();
 	init_resources_table();
 
-    create_table();
+	create_table();
 
-    //registra a rota do log do cliente
-    add_route("/login", handle_post_request);
+	//registra a rota do log do cliente
+	add_route("/login", authenticate);
 
 	// Serve request. Hit Ctrl-C to terminate the program
 	printf("Starting on port %s\n", mg_get_option(server, "listening_port"));
@@ -64,5 +75,5 @@ int main(void){
 	// Cleanup, and free server instance
 	mg_destroy_server(&server);
 
-    return 0;
+	return 0;
 }

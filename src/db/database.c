@@ -32,12 +32,12 @@ int connect_db(){
 		if (msg != SQLITE_OK ) {
             return 1;
         } else {
-            fprintf(stdout, "Erro ao conectar ao banco, erro ao tentar ativar foreign_keys");
+            fprintf(stdout, "Erro ao conectar ao banco, erro ao tentar ativar foreign_keys\n");
             return 0;
         }
 	} 
 
-    fprintf(stdout, "Erro ao conectar ao banco, SQLITE_OK false");
+    fprintf(stdout, "Erro ao conectar ao banco, SQLITE_OK false\n");
     return 0;
 }
 
