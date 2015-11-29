@@ -1,0 +1,434 @@
+    <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Database – shared_wifi v0.0.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.11.1">
+    <link rel="stylesheet" href="dist/app-6bc9434c82.css" />
+    <script src="dist/sidebar_items.js"></script>
+  </head>
+  <body data-type="modules">
+
+    <div class="main">
+<button class="sidebar-toggle">
+  <i class="icon-menu"></i>
+</button>
+<section class="sidebar">
+  <button class="sidebar-toggle">
+    <i class="icon-menu"></i>
+  </button>
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        shared_wifi
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.0.1
+      </h2>
+    </div>
+    
+  </a>
+
+  <div class="sidebar-search">
+    <i class="icon-search"></i>
+    <input type="text" class="sidebar-searchInput" placeholder="search" autocomplete="off" />
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+  </ul>
+
+  <ul id="full-list" class="sidebar-fullList"></ul>
+  <div class="sidebar-noResults"></div>
+</section>
+
+<section class="content">
+  <div id="content" class="content-inner">
+
+
+      <h1>
+        <small class="visible-xs">shared_wifi v0.0.1</small>
+        Database
+        
+        
+      </h1>
+
+      
+        <section id="moduledoc" class="docstring">
+          <p>Responsável por executar todas as chamadas ao banco.</p>
+
+        </section>
+      
+
+      
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <i class="icon-link"></i>
+            </a>
+            Summary
+          </h1>
+          
+
+          
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+    <div class="summary-row">
+  <div class="summary-signature">
+    <a href="#callback/4">callback(notUsed, argc, argv, azColName)</a>
+  </div>
+  
+    <div class="summary-synopsis"></div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#close_db/0">close_db()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Fecha a conexão com o banco de dados</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#connect_db/0">connect_db()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Conecta ao banco de dados</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#create_table/0">create_table()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Cria todas as tabelas do banco de dados</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete_client/1">delete_client(user_id)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Remove um usuário do banco</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete_log/1">delete_log(user_id)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Remove o log de conexão de um cliente</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#insert_client/1">insert_client(cliente)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Insere o cliente no banco</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#insert_log/1">insert_log(user_id)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Insere o log de conexão do cliente</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#list_all_clients/0">list_all_clients()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retorna todos os registros de clientes do banco</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#list_all_logs/0">list_all_logs()</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Retorna um lista dos logs</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#log_exists/1">log_exists(fk_id)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Verifica se existe um log de conexão do cliente</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_client/1">update_client(cliente)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Altera dados do cliente</p>
+</div>
+  
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#user_exists/1">user_exists(user_id)</a>
+  </div>
+  
+    <div class="summary-synopsis"><p>Verifica se o usuário existe ou não</p>
+</div>
+  
+</div>
+
+  </div>
+
+
+          
+
+          
+
+        </section>
+      
+
+      
+
+      
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <i class="icon-link"></i>
+            </a>
+            Functions
+          </h1>
+          <div class="detail" id="callback/4">
+  <div class="detail-header">
+    <a href="#callback/4" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">callback(notUsed, argc, argv, azColName)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    
+  </section>
+</div>
+<div class="detail" id="close_db/0">
+  <div class="detail-header">
+    <a href="#close_db/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">close_db()</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Fecha a conexão com o banco de dados</p>
+
+  </section>
+</div>
+<div class="detail" id="connect_db/0">
+  <div class="detail-header">
+    <a href="#connect_db/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">connect_db()</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Conecta ao banco de dados</p>
+
+  </section>
+</div>
+<div class="detail" id="create_table/0">
+  <div class="detail-header">
+    <a href="#create_table/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">create_table()</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Cria todas as tabelas do banco de dados</p>
+
+  </section>
+</div>
+<div class="detail" id="delete_client/1">
+  <div class="detail-header">
+    <a href="#delete_client/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">delete_client(user_id)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Remove um usuário do banco</p>
+
+  </section>
+</div>
+<div class="detail" id="delete_log/1">
+  <div class="detail-header">
+    <a href="#delete_log/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">delete_log(user_id)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Remove o log de conexão de um cliente</p>
+
+  </section>
+</div>
+<div class="detail" id="insert_client/1">
+  <div class="detail-header">
+    <a href="#insert_client/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">insert_client(cliente)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Insere o cliente no banco</p>
+
+  </section>
+</div>
+<div class="detail" id="insert_log/1">
+  <div class="detail-header">
+    <a href="#insert_log/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">insert_log(user_id)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Insere o log de conexão do cliente</p>
+
+  </section>
+</div>
+<div class="detail" id="list_all_clients/0">
+  <div class="detail-header">
+    <a href="#list_all_clients/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">list_all_clients()</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Retorna todos os registros de clientes do banco</p>
+
+  </section>
+</div>
+<div class="detail" id="list_all_logs/0">
+  <div class="detail-header">
+    <a href="#list_all_logs/0" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">list_all_logs()</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Retorna um lista dos logs</p>
+
+  </section>
+</div>
+<div class="detail" id="log_exists/1">
+  <div class="detail-header">
+    <a href="#log_exists/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">log_exists(fk_id)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Verifica se existe um log de conexão do cliente</p>
+
+  </section>
+</div>
+<div class="detail" id="update_client/1">
+  <div class="detail-header">
+    <a href="#update_client/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">update_client(cliente)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Altera dados do cliente</p>
+
+  </section>
+</div>
+<div class="detail" id="user_exists/1">
+  <div class="detail-header">
+    <a href="#user_exists/1" class="detail-link" title="Link to this function">
+      <i class="icon-link"></i>
+    </a>
+    <span class="signature">user_exists(user_id)</span>
+      
+  </div>
+  
+  <section class="docstring">
+    <p>Verifica se o usuário existe ou não</p>
+
+  </section>
+</div>
+
+        </section>
+      
+
+      
+
+      
+        <footer class="footer">
+      <p>
+        <span class="line">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.11.1),
+        </span>
+        <span class="line">
+          designed by
+          <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+      </p>
+    </footer>
+  </div>
+</section>
+</div>
+  <script src="dist/app-c7aad77d7d.js"></script>
+  </body>
+</html>
+

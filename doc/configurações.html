@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Configurações – shared_wifi v0.0.1</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.11.1">
+    <link rel="stylesheet" href="dist/app-6bc9434c82.css" />
+    <script src="dist/sidebar_items.js"></script>
+  </head>
+  <body data-type="extras">
+
+<div class="main">
+<button class="sidebar-toggle">
+  <i class="icon-menu"></i>
+</button>
+<section class="sidebar">
+  <button class="sidebar-toggle">
+    <i class="icon-menu"></i>
+  </button>
+
+  
+  <a href="api-reference.html" class="sidebar-projectLink">
+    <div class="sidebar-projectDetails">
+      <h1 class="sidebar-projectName">
+        shared_wifi
+      </h1>
+      <h2 class="sidebar-projectVersion">
+        v0.0.1
+      </h2>
+    </div>
+    
+  </a>
+
+  <div class="sidebar-search">
+    <i class="icon-search"></i>
+    <input type="text" class="sidebar-searchInput" placeholder="search" autocomplete="off" />
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+    
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+    
+
+    
+
+    
+  </ul>
+
+  <ul id="full-list" class="sidebar-fullList"></ul>
+  <div class="sidebar-noResults"></div>
+</section>
+
+<section class="content">
+  <div id="content" class="content-inner">
+
+
+<h1>Configurações:</h1>
+<p>Para customizar o funcionamento do sistema, você poderá editar os arquivos que estão dentro da pasta Conf</p>
+<p><strong> dhcpd.conf: </strong> Endereço do servidor de DNS, máscara de rede e faixa de IP da rede;</p>
+<p><strong> hostapd.conf: </strong> nome e senha da rede wi-fi, placa de rede responsável pela transmissão do sinal;</p>
+<p><strong> interfaces: </strong> Configurações da placa de rede;</p>
+<p><strong> rc.local: </strong> Configuração inicial de Ip-tables;</p>
+<p><strong> sysctl.conf: </strong> Configuração de placa de rede;</p>
+<h2>Tutorial de Configuração:</h2>
+<p>Vamos configurar nosso sistema para publicar uma rede wi-fi de nome Shared com senha 12345.
+Queremos que o nosso roteador use a faixa de ip 192.168.1.xxx e use o servidor de DNS primário 8.8.8.8 e secundário 8.8.4.4</p>
+<h3>Passo 1: Editar o arquivo dhcpd.conf</h3>
+<pre><code class="elixir">ddns-update-style none;
+option domain-name &quot;home&quot;;
+option domain-name-servers 8.8.8.8.8 , 8.8.4.4;
+
+default-lease-time 600;
+max-lease-time 7200;
+
+authoritative;
+
+log-facility local7;
+
+subnet 192.168.1.0 netmask 255.255.255.0 {
+  range 192.168.1.2 192.168.1.100;
+  option routers 192.168.1.1;
+}</code></pre>
+<h3>Passo 2: Editar o arquivo hostapd.conf</h3>
+<pre><code class="elixir">ssid=Shared
+wpa_passphrase=12345
+interface=wlan0
+
+wpa=2
+wpa_key_mgmt=WPA-PSK
+auth_algs=1
+beacon_int=50
+channel=3
+country_code=US
+disassoc_low_ack=1
+driver=n180211
+hw_mode=g
+ht_capab=[HT40+][HT40-][SHORT-GI-40][RX-STBC1]
+ieee80211d=1
+ieee80211n=1
+require_ht=0
+rsn_pairwise=CCMP
+wmm_enabled=1</code></pre>
+<h3>Passo 3: Editar o arquivo interfaces</h3>
+<pre><code class="elixir">auto lo wlan0
+
+iface lo inet loopback
+
+iface wlan0 inet static
+address 192.168.1.1
+gateway 192.168.1.1
+netmask 255.255.255.0
+dns-nameservers 8.8.8.8
+wireless-mode Master</code></pre>
+<p>Isso já é suficiente para funcionar com os requisitos que levantamos.</p>
+
+    <footer class="footer">
+      <p>
+        <span class="line">
+          Built using
+          <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" rel="help" target="_blank">ExDoc</a> (v0.11.1),
+        </span>
+        <span class="line">
+          designed by
+          <a href="https://twitter.com/dignifiedquire" target="_blank" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+      </p>
+    </footer>
+  </div>
+</section>
+</div>
+  <script src="dist/app-c7aad77d7d.js"></script>
+  </body>
+</html>
+
